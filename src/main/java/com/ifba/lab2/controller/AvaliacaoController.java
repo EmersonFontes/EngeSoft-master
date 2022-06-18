@@ -21,7 +21,9 @@ public class AvaliacaoController {
 
     @PostMapping
     public void incluir(@RequestBody Avaliacao avaliacao){
+        avaliacao.setMedia(avaliacao.mediaDoArtigo());
         avaliacaoRepository.save(avaliacao);
+
     }
 
     @PutMapping

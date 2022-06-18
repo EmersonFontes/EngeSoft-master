@@ -26,6 +26,7 @@ public class Edicao {
     @JoinColumn(name="id_edicao")
     List<Artigo> artigos = new ArrayList<>();
 
+
     @Column(name = ("volume_edicao"))
     int volume;
 
@@ -38,17 +39,51 @@ public class Edicao {
     @Column(name = ("tema_edicao"))
     String tema;
 
-    public boolean VerificarTema(){
-        return true;
+    public BigInteger getId() {
+        return id;
     }
 
-    public int ArtigosSub(){
-        return 0;
-    }
-    
-    public void ArtigosSelecionados(){
-        
+    public void setId(BigInteger id) {
+        this.id = id;
     }
 
+    public List<Artigo> getArtigos() {
+        return artigos;
+    }
 
+    public void setArtigos(List<Artigo> artigos) {
+        this.artigos = artigos;
+    }
+
+    public int getVolume() {
+        return volume;
+    }
+
+    public void setVolume(int volume) {
+        this.volume = volume;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    public String getTema() {
+        return tema;
+    }
+
+    public void setTema(String tema) {
+        this.tema = tema;
+    }
 }

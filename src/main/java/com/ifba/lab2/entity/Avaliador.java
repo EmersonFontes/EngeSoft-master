@@ -4,11 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Data
@@ -18,7 +17,10 @@ import java.math.BigInteger;
 @Table(name="table_avaliador")
 
 public class Avaliador {
+
     @Id
+    @GeneratedValue
+    @Column(name = "id_avaliador")
     BigInteger id;
 
     @Column(name = "nome_avaliador")
@@ -27,16 +29,75 @@ public class Avaliador {
     @Column(name = "email_avaliador")
     String email;
 
-    @Column(name = "tema_avaliador")
-    String[] tema;
+
+
+    @ManyToMany
+    @JoinTable(joinColumns = @JoinColumn(name = "id_avaliador"),
+                inverseJoinColumns = @JoinColumn(name = "id_tema"))
+    List<Tema> temas = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "avaliadores")
+    List<Artigo> artigos = new ArrayList<>();
 
     @Column(name = "chefe_avaliador")
     Boolean avaliadorChefe;
-    
-    public void AvaliadorChefe(){}
-    
-    public void AvaliarCriterios(){}
-    
-    public void VerificaListadeArtigos(){}
+
+    public BigInteger getId() {
+        return id;
+    }
+
+    public void setId(BigInteger id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<Tema> getTemas() {
+        return temas;
+    }
+
+    public void setTemas(List<Tema> temas) {
+        this.temas = temas;
+    }
+
+    public List<Artigo> getArtigos() {
+        return artigos;
+    }
+
+    public void setArtigos(List<Artigo> artigos) {
+        this.artigos = artigos;
+    }
+
+    public Boolean getAvaliadorChefe() {
+        return avaliadorChefe;
+    }
+
+    public void setAvaliadorChefe(Boolean avaliadorChefe) {
+        this.avaliadorChefe = avaliadorChefe;
+    }
+
+    public boolean AvaliadorChefe(){
+
+        if(this.avaliadorChefe){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     
 }

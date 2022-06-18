@@ -1,14 +1,11 @@
 package com.ifba.lab2.entity;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigInteger;
 
 @Data
@@ -19,18 +16,65 @@ import java.math.BigInteger;
 
 public class Avaliacao {
     @Id
+    @GeneratedValue
     @Column(name = "id_avaliacao")
-    BigInteger id;
+     BigInteger id;
 
-    @Column(name = "oriinalidade_avaliacao")
-    float originalidade;
+    @Column(name = "orinalidade_avaliacao")
+     float originalidade;
 
     @Column(name = "conteudo_avaliacao")
-    float conteúdo;
+     float conteudo;
 
     @Column(name = "apresentacao_avaliacao")
-    float apresentação;
+     float apresentacao;
 
     @Column(name = "media_avaliacao")
-    float media;
+     float media;
+
+    public void setId(BigInteger id) {
+        this.id = id;
+    }
+    public BigInteger getId() {
+        return id;
+    }
+    public void setOriginalidade(float originalidade) {
+        this.originalidade = originalidade;
+    }
+    public float getOriginalidade() {
+        return originalidade;
+    }
+    public void setConteudo(float conteudo) {
+        this.conteudo = conteudo;
+    }
+    public float getConteudo() {
+        return conteudo;
+    }
+
+    public void setApresentacao(float apresentacao) {
+        this.apresentacao = apresentacao;
+    }
+
+    public float getApresentacao() {
+        return apresentacao;
+    }
+
+    public void setMedia(float media) {
+        this.media = media;
+    }
+
+    public float getMedia() {
+        return media;
+    }
+
+    public float mediaDoArtigo() {
+
+        this.media = (this.apresentacao + this.conteudo + this.originalidade) / 3;
+
+        return this.media;
+
+
+
+    }
+
 }

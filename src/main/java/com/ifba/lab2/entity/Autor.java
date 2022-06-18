@@ -17,6 +17,7 @@ import java.util.List;
 public class Autor {
 
     @Id
+    @GeneratedValue
     @Column(name = "id_autor")
     private BigInteger id;
 
@@ -35,8 +36,51 @@ public class Autor {
     @ManyToMany(mappedBy = "autores")
     List<Artigo> artigos = new ArrayList<>();
 
+    public BigInteger getId() {
+        return id;
+    }
 
-    //@ManyToMany(mappedBy = "")
-    // List<Artigo> artigos =new ArrayList<>();
+    public void setId(BigInteger id) {
+        this.id = id;
+    }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getIntituicao() {
+        return intituicao;
+    }
+
+    public void setIntituicao(String intituicao) {
+        this.intituicao = intituicao;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public List<Artigo> getArtigos() {
+        return artigos;
+    }
+
+    public void setArtigos(List<Artigo> artigos) {
+        this.artigos = artigos;
+    }
 }
